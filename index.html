@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>krino · резюме</title>
+    <title>krino - резюме</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,11 +30,18 @@
         </div>
     </div>
 
+    <canvas class="snow-canvas" id="snowCanvas"></canvas>
+
     <header class="topbar">
         <h1 class="logo">krino</h1>
 
         <div class="topbar-right">
             <nav class="nav-menu" id="navMenu"></nav>
+
+            <button class="theme-toggle" id="snowToggle" aria-label="Снег" title="Снег">
+                <i class="fas fa-snowflake"></i>
+            </button>
+
             <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Сменить тему">
                 <i class="fas fa-moon"></i>
             </button>
