@@ -5,6 +5,7 @@
     const { $, $$ } = Render;
     const html = document.documentElement;
     const STORAGE_KEY = 'krino-theme';
+    const SNOW_KEY = 'krino-snow';
 
     function initTheme() {
         const toggle = $('#themeToggle');
@@ -12,6 +13,7 @@
 
         if (html.getAttribute('data-theme') === 'dark') {
             icon.classList.replace('fa-moon', 'fa-sun');
+            toggle.classList.add('is-on');
         }
 
         toggle.addEventListener('click', () => {
@@ -19,10 +21,12 @@
             if (isDark) {
                 html.removeAttribute('data-theme');
                 icon.classList.replace('fa-sun', 'fa-moon');
+                toggle.classList.remove('is-on');
                 localStorage.setItem(STORAGE_KEY, 'light');
             } else {
                 html.setAttribute('data-theme', 'dark');
                 icon.classList.replace('fa-moon', 'fa-sun');
+                toggle.classList.add('is-on');
                 localStorage.setItem(STORAGE_KEY, 'dark');
             }
         });
@@ -100,6 +104,121 @@
         runSequence();
     }
 
+    function initSnow() {
+        const canvas = $('#snowCanvas');
+        const ctx = canvas.getContext('2d');
+        const toggle = $('#snowToggle');
+
+        let W = 0, H = 0;
+        const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+        const isMobile = window.matchMedia('(max-width: 700px)').matches;
+
+        function resize() {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            canvas.width = W * DPR;
+            canvas.height = H * DPR;
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const COUNT = isMobile ? 30 : 55;
+        const flakes = [];
+        let running = false;
+        let rafId = null;
+
+        function isDark() {
+            return document.documentElement.getAttribute('data-theme') === 'dark';
+        }
+
+        function createFlake(randomY) {
+            return {
+                x: Math.random() * W,
+                y: randomY ? Math.random() * H : -10,
+                r: 0.8 + Math.random() * 1.8,
+                vy: 0.25 + Math.random() * 0.55,
+                vx: (Math.random() - 0.5) * 0.35,
+                phase: Math.random() * Math.PI * 2,
+                phaseSpeed: 0.008 + Math.random() * 0.012,
+                alpha: 0.35 + Math.random() * 0.5
+            };
+        }
+
+        for (let i = 0; i < COUNT; i++) flakes.push(createFlake(true));
+
+        function loop() {
+            ctx.clearRect(0, 0, W, H);
+
+            const dark = isDark();
+            const fill = dark ? 'rgba(220, 235, 255,' : 'rgba(90, 140, 200,';
+
+            for (let i = 0; i < flakes.length; i++) {
+                const f = flakes[i];
+
+                f.phase += f.phaseSpeed;
+                f.x += f.vx + Math.sin(f.phase) * 0.35;
+                f.y += f.vy;
+
+                if (f.y > H + 8) {
+                    f.y = -8;
+                    f.x = Math.random() * W;
+                }
+                if (f.x < -10) f.x = W + 10;
+                else if (f.x > W + 10) f.x = -10;
+
+                ctx.beginPath();
+                ctx.arc(f.x, f.y, f.r, 0, 6.2832);
+                ctx.fillStyle = fill + f.alpha + ')';
+                ctx.fill();
+            }
+
+            rafId = requestAnimationFrame(loop);
+        }
+
+        function start() {
+            if (running) return;
+            running = true;
+            canvas.classList.add('active');
+            toggle.classList.add('is-on');
+            loop();
+        }
+
+        function stop() {
+            if (!running) return;
+            running = false;
+            if (rafId) cancelAnimationFrame(rafId);
+            ctx.clearRect(0, 0, W, H);
+            canvas.classList.remove('active');
+            toggle.classList.remove('is-on');
+        }
+
+        if (localStorage.getItem(SNOW_KEY) === 'on') {
+            start();
+        }
+
+        toggle.addEventListener('click', () => {
+            if (running) {
+                stop();
+                localStorage.setItem(SNOW_KEY, 'off');
+            } else {
+                start();
+                localStorage.setItem(SNOW_KEY, 'on');
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (rafId) cancelAnimationFrame(rafId);
+                rafId = null;
+            } else if (running && !rafId) {
+                loop();
+            }
+        });
+    }
+
     function initSmoothScroll() {
         document.addEventListener('click', (e) => {
             const link = e.target.closest('a[href^="#"]');
@@ -114,6 +233,7 @@
 
     initTheme();
     initTerminalLoader();
+    initSnow();
     initSmoothScroll();
 
 })();

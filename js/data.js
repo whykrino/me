@@ -8,11 +8,11 @@ const SITE_DATA = {
     terminal: {
         user: 'krino@server',
         commands: [
-            { cmd: 'ssh krino.dev', delay: 400, duration: 55 },
+            { cmd: 'ssh krino@dev.space', delay: 400, duration: 55 },
             { cmd: 'password: ********', delay: 550, duration: 40, muted: true },
             { cmd: 'welcome to krino.dev - portfolio', delay: 450, duration: 30, info: true },
             { cmd: 'loading modules...', delay: 300, duration: 45 },
-            { cmd: 'mounting info · projects · games', delay: 350, duration: 40 },
+            { cmd: 'mounting info - projects - games', delay: 350, duration: 40 },
             { cmd: 'starting render pipeline', delay: 350, duration: 35 },
             { cmd: 'status: ready', delay: 400, duration: 35, success: true }
         ]
@@ -102,5 +102,5 @@ const SITE_DATA = {
         ]
     },
 
-    footer: 'krino · портфолио 2026'
+    footer: 'krino - портфолио 2026'
 };
