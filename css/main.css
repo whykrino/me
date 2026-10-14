@@ -3,57 +3,43 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 :root {
     --bg-gradient-1: #d9e6f5;
     --bg-gradient-2: #e5eefa;
     --bg-gradient-3: #d5e2f2;
-
     --text-main: #2f3e56;
     --text-soft: #3f5675;
     --text-muted: #4a6382;
     --text-heading: #2c4468;
     --text-icon: #4670a5;
-
     --card-bg: rgba(255, 255, 255, 0.88);
     --card-border: #c2d5ec;
     --card-border-hover: #96b8dc;
-
     --topbar-bg: rgba(255, 255, 255, 0.82);
     --topbar-border: #b8cde6;
-
     --accent-soft: #d2e2f5;
     --accent-border: #aec8e5;
     --accent-text: #3d5c85;
-
     --shadow-soft: rgba(90, 130, 185, 0.5);
     --shadow-hover: rgba(80, 125, 185, 0.6);
-
     --glow-line: linear-gradient(90deg, transparent, #8fb1d9, #5f8ec4, #8fb1d9, transparent);
-
     --nav-text: #4a6588;
     --nav-hover-text: #2c4468;
     --nav-hover-bg: rgba(150, 185, 225, 0.4);
     --nav-underline: linear-gradient(90deg, #7aa1d0, #3f6ea8);
-
     --item-bg-1: #eff6ff;
     --item-bg-2: #dce9f8;
     --item-bg-hover-1: #f6faff;
     --item-bg-hover-2: #d1e2f5;
-
     --link: #4f80bd;
     --link-hover: #2e5591;
-
     --game-icon: #c6a066;
-
     --footer-text: #65809f;
     --footer-icon: #7fa2cb;
     --footer-border: #c2d5ec;
-
     --term-bg: #1e2b3f;
     --term-bg-2: #16233a;
     --term-text: #b8cbe3;
@@ -62,54 +48,44 @@ html {
     --term-info: #8fb1d9;
     --term-muted: #7e97b8;
     --term-border: #2a4a6e;
+    --toggle-on-bg: #4f80bd;
+    --toggle-on-color: #ffffff;
+    --toggle-on-glow: rgba(79, 128, 189, 0.35);
 }
-
 [data-theme="dark"] {
     --bg-gradient-1: #16233a;
     --bg-gradient-2: #0f1a2c;
     --bg-gradient-3: #0b1522;
-
     --text-main: #b8cbe3;
     --text-soft: #97b0cf;
     --text-muted: #7e97b8;
     --text-heading: #cadcf0;
     --text-icon: #6d9bcb;
-
     --card-bg: rgba(22, 38, 60, 0.88);
     --card-border: #24405f;
     --card-border-hover: #3a6088;
-
     --topbar-bg: rgba(18, 32, 51, 0.85);
     --topbar-border: #24405f;
-
     --accent-soft: #1b3350;
     --accent-border: #2a4a6e;
     --accent-text: #8db6df;
-
     --shadow-soft: rgba(0, 0, 0, 0.55);
     --shadow-hover: rgba(60, 120, 185, 0.4);
-
     --glow-line: linear-gradient(90deg, transparent, #2a4a6e, #4d7aab, #2a4a6e, transparent);
-
     --nav-text: #97b0cf;
     --nav-hover-text: #cadcf0;
     --nav-hover-bg: rgba(70, 120, 175, 0.28);
     --nav-underline: linear-gradient(90deg, #5a8cbd, #8db6df);
-
     --item-bg-1: #18293f;
     --item-bg-2: #132234;
     --item-bg-hover-1: #1e3350;
     --item-bg-hover-2: #182c46;
-
     --link: #7fa8d9;
     --link-hover: #a5c5e8;
-
     --game-icon: #d0ab74;
-
     --footer-text: #6f8bab;
     --footer-icon: #5a8cbd;
     --footer-border: #24405f;
-
     --term-bg: #0f1a2c;
     --term-bg-2: #0b1522;
     --term-text: #b8cbe3;
@@ -118,8 +94,10 @@ html {
     --term-info: #8db6df;
     --term-muted: #6f8bab;
     --term-border: #24405f;
+    --toggle-on-bg: #6d9bcb;
+    --toggle-on-color: #0f1a2c;
+    --toggle-on-glow: rgba(109, 155, 203, 0.45);
 }
-
 body {
     background: linear-gradient(160deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 40%, var(--bg-gradient-3) 100%);
     background-attachment: fixed;
@@ -137,39 +115,46 @@ body {
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.005em;
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
 }
-
 ::selection {
     background: #a5c5e8;
     color: #1a2a44;
 }
-
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
-
 ::-webkit-scrollbar-track {
     background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--text-icon), var(--accent-border));
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: padding-box;
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, var(--text-heading), var(--text-icon));
     background-clip: padding-box;
 }
-
 html {
     scrollbar-width: thin;
     scrollbar-color: var(--text-icon) transparent;
 }
-
+.snow-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.snow-canvas.active {
+    opacity: 1;
+}
 .preloader {
     position: fixed;
     inset: 0;
@@ -181,13 +166,11 @@ html {
     transition: opacity 0.7s ease, visibility 0.7s ease;
     padding: 1.5rem;
 }
-
 .preloader.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
-
 .terminal {
     width: min(680px, 100%);
     background: var(--term-bg);
@@ -197,7 +180,6 @@ html {
     box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(140, 190, 240, 0.08) inset;
     font-family: 'IBM Plex Mono', monospace;
 }
-
 .terminal-bar {
     display: flex;
     align-items: center;
@@ -206,25 +188,21 @@ html {
     background: var(--term-bg-2);
     border-bottom: 1px solid var(--term-border);
 }
-
 .dot {
     width: 11px;
     height: 11px;
     border-radius: 50%;
     display: inline-block;
 }
-
 .dot-red    { background: #e07a7a; }
 .dot-yellow { background: #e0c07a; }
 .dot-green  { background: #8fce9d; }
-
 .terminal-title {
     margin-left: auto;
     font-size: 0.78rem;
     color: var(--term-muted);
     letter-spacing: 0.05em;
 }
-
 .terminal-body {
     padding: 1.2rem 1.3rem 1.5rem;
     min-height: 240px;
@@ -232,7 +210,6 @@ html {
     line-height: 1.9;
     color: var(--term-text);
 }
-
 .terminal-line {
     display: block;
     word-break: break-word;
@@ -240,30 +217,25 @@ html {
     opacity: 0;
     animation: line-in 0.4s ease forwards;
 }
-
 @keyframes line-in {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-
 .terminal-prompt {
     display: inline-block;
     color: var(--term-prompt);
     margin-right: 0.6rem;
     flex-shrink: 0;
 }
-
 .terminal-cmd {
     color: var(--term-text);
 }
-
 .smooth-char {
     display: inline-block;
     opacity: 0;
     animation: char-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     will-change: opacity, filter, transform;
 }
-
 @keyframes char-in {
     from {
         opacity: 0;
@@ -276,11 +248,9 @@ html {
         transform: translateY(0);
     }
 }
-
 .terminal-line.muted .terminal-cmd { color: var(--term-muted); }
 .terminal-line.info .terminal-cmd { color: var(--term-info); }
 .terminal-line.success .terminal-cmd { color: var(--term-success); }
-
 .terminal-cursor {
     display: inline-block;
     width: 9px;
@@ -289,23 +259,19 @@ html {
     vertical-align: middle;
     animation: blink 1.1s steps(2, start) infinite;
 }
-
 @keyframes blink {
     0%, 50%   { opacity: 1; }
     50.01%, 100% { opacity: 0; }
 }
-
 .resume-container,
 .topbar {
     opacity: 0;
     transition: opacity 0.9s ease;
 }
-
 body.loaded .resume-container,
 body.loaded .topbar {
     opacity: 1;
 }
-
 .topbar {
     position: fixed;
     top: 1rem;
@@ -325,7 +291,6 @@ body.loaded .topbar {
     z-index: 100;
     transition: background 0.4s ease, border-color 0.4s ease;
 }
-
 .logo {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 1.6rem;
@@ -338,19 +303,16 @@ body.loaded .topbar {
     cursor: default;
     transition: color 0.4s ease;
 }
-
 .topbar-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.6rem;
 }
-
 .nav-menu {
     display: flex;
     gap: 0.2rem;
     flex-wrap: wrap;
 }
-
 .nav-menu a {
     position: relative;
     text-decoration: none;
@@ -363,7 +325,6 @@ body.loaded .topbar {
     letter-spacing: 0.01em;
     transition: color 0.25s ease, background 0.25s ease;
 }
-
 .nav-menu a::after {
     content: "";
     position: absolute;
@@ -375,21 +336,19 @@ body.loaded .topbar {
     transition: width 0.3s ease, left 0.3s ease;
     transform: translateX(-50%);
 }
-
 .nav-menu a:hover {
     color: var(--nav-hover-text);
     background: var(--nav-hover-bg);
 }
-
 .nav-menu a:hover::after {
     width: 70%;
     left: 50%;
 }
-
 .theme-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 2.4rem;
     height: 2.4rem;
     border-radius: 0.35rem;
@@ -399,19 +358,25 @@ body.loaded .topbar {
     cursor: pointer;
     font-size: 1rem;
     transition: background 0.3s ease, color 0.3s ease,
-                transform 0.3s ease, border-color 0.3s ease;
+                transform 0.15s ease, border-color 0.3s ease,
+                box-shadow 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
-
-.theme-toggle:hover {
-    background: var(--nav-hover-bg);
-    color: var(--nav-hover-text);
-    transform: rotate(15deg);
-}
-
 .theme-toggle:active {
-    transform: rotate(0deg) scale(0.95);
+    transform: scale(0.9);
 }
-
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--text-icon);
+    outline-offset: 2px;
+}
+.theme-toggle.is-on {
+    background: var(--toggle-on-bg);
+    color: var(--toggle-on-color);
+    border-color: var(--toggle-on-bg);
+    box-shadow: 0 0 0 3px var(--toggle-on-glow),
+                0 6px 16px -6px var(--toggle-on-glow);
+}
 .resume-container {
     max-width: 1200px;
     width: 100%;
@@ -419,7 +384,6 @@ body.loaded .topbar {
     position: relative;
     z-index: 2;
 }
-
 .card {
     background: var(--card-bg);
     backdrop-filter: blur(8px);
@@ -434,22 +398,12 @@ body.loaded .topbar {
                 border-color 0.3s ease, background 0.4s ease;
     scroll-margin-top: 6.5rem;
 }
-
-.card:hover {
-    border-color: var(--card-border-hover);
-    box-shadow: 0 25px 45px -20px var(--shadow-hover),
-                0 0 0 1px rgba(200, 225, 250, 0.4) inset,
-                0 0 25px rgba(150, 190, 235, 0.15);
-    transform: translateY(-2px);
-}
-
 .card-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 1.8rem;
 }
-
 .card-header i {
     font-size: 1.5rem;
     color: var(--text-icon);
@@ -462,7 +416,6 @@ body.loaded .topbar {
     text-align: center;
     transition: background 0.4s ease, color 0.4s ease;
 }
-
 .card-header h2 {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1.9rem;
@@ -471,26 +424,22 @@ body.loaded .topbar {
     color: var(--text-heading);
     transition: color 0.4s ease;
 }
-
 .info-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: space-between;
 }
-
 .info-text {
     flex: 2;
     min-width: 280px;
 }
-
 .info-text p {
     font-size: 1.05rem;
     color: var(--text-soft);
     margin-bottom: 1.2rem;
     transition: color 0.4s ease;
 }
-
 .info-text .highlight {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.95rem;
@@ -502,7 +451,6 @@ body.loaded .topbar {
     display: inline;
     transition: color 0.4s ease;
 }
-
 .info-contacts {
     flex: 1.2;
     min-width: 220px;
@@ -513,7 +461,6 @@ body.loaded .topbar {
     box-shadow: inset 0 0 20px rgba(150, 190, 235, 0.15);
     transition: background 0.4s ease, border-color 0.4s ease;
 }
-
 .info-contacts h3 {
     font-size: 1.1rem;
     font-weight: 600;
@@ -525,7 +472,6 @@ body.loaded .topbar {
     padding-left: 0.9rem;
     transition: color 0.4s ease;
 }
-
 .contact-item {
     display: flex;
     align-items: center;
@@ -535,7 +481,6 @@ body.loaded .topbar {
     color: var(--text-soft);
     transition: color 0.4s ease;
 }
-
 .contact-item i {
     width: 1.6rem;
     color: var(--text-icon);
@@ -543,7 +488,6 @@ body.loaded .topbar {
     text-align: center;
     transition: color 0.4s ease;
 }
-
 .projects-grid,
 .games-grid {
     display: flex;
@@ -551,7 +495,6 @@ body.loaded .topbar {
     gap: 1.5rem;
     margin-top: 0.5rem;
 }
-
 .project-item,
 .game-item {
     width: 62%;
@@ -562,24 +505,12 @@ body.loaded .topbar {
     transition: all 0.3s ease;
     box-shadow: 0 10px 22px -14px var(--shadow-soft);
 }
-
 .project-item { border-left: 3px solid var(--text-icon); }
 .game-item    { border-left: 3px solid var(--game-icon); }
-
 .project-item:nth-child(odd),
 .game-item:nth-child(odd)  { align-self: flex-start; }
-
 .project-item:nth-child(even),
 .game-item:nth-child(even) { align-self: flex-end; }
-
-.project-item:hover,
-.game-item:hover {
-    background: linear-gradient(160deg, var(--item-bg-hover-1), var(--item-bg-hover-2));
-    border-color: var(--card-border-hover);
-    box-shadow: 0 18px 30px -16px var(--shadow-hover);
-    transform: translateY(-2px);
-}
-
 .project-item h3,
 .game-item h3 {
     font-size: 1.25rem;
@@ -592,10 +523,8 @@ body.loaded .topbar {
     margin-bottom: 0.6rem;
     transition: color 0.4s ease;
 }
-
 .project-item h3 i { color: var(--text-icon); font-size: 1.15rem; }
 .game-item h3 i    { color: var(--game-icon); font-size: 1.2rem; }
-
 .project-desc,
 .game-desc {
     color: var(--text-muted);
@@ -604,14 +533,12 @@ body.loaded .topbar {
     line-height: 1.55;
     transition: color 0.4s ease;
 }
-
 .tech-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1.1rem;
 }
-
 .tech-tags span {
     font-family: 'IBM Plex Mono', monospace;
     background: var(--accent-soft);
@@ -624,7 +551,6 @@ body.loaded .topbar {
     letter-spacing: 0.02em;
     transition: background 0.4s ease, color 0.4s ease;
 }
-
 .game-meta {
     display: flex;
     align-items: center;
@@ -636,12 +562,10 @@ body.loaded .topbar {
     flex-wrap: wrap;
     transition: color 0.4s ease;
 }
-
 .game-meta i {
     color: var(--text-icon);
     margin-right: 5px;
 }
-
 .project-link,
 .game-link {
     text-decoration: none;
@@ -654,12 +578,6 @@ body.loaded .topbar {
     align-items: center;
     gap: 8px;
 }
-
-.project-link:hover,
-.game-link:hover {
-    color: var(--link-hover);
-}
-
 .glow-line {
     height: 1px;
     background: var(--glow-line);
@@ -667,7 +585,6 @@ body.loaded .topbar {
     opacity: 0.8;
     transition: background 0.4s ease;
 }
-
 .footer {
     margin-top: 2rem;
     text-align: center;
@@ -680,73 +597,147 @@ body.loaded .topbar {
     text-transform: uppercase;
     transition: color 0.4s ease, border-color 0.4s ease;
 }
-
 .footer i {
     color: var(--footer-icon);
     margin: 0 4px;
     transition: color 0.4s ease;
 }
-
+@media (hover: hover) and (pointer: fine) {
+    .theme-toggle:hover {
+        background: var(--nav-hover-bg);
+        color: var(--nav-hover-text);
+    }
+    .theme-toggle.is-on:hover {
+        background: var(--toggle-on-bg);
+        color: var(--toggle-on-color);
+        filter: brightness(1.08);
+    }
+    .nav-menu a:hover {
+        color: var(--nav-hover-text);
+        background: var(--nav-hover-bg);
+    }
+    .nav-menu a:hover::after {
+        width: 70%;
+        left: 50%;
+    }
+    .card:hover {
+        border-color: var(--card-border-hover);
+        box-shadow: 0 25px 45px -20px var(--shadow-hover),
+                    0 0 0 1px rgba(200, 225, 250, 0.4) inset,
+                    0 0 25px rgba(150, 190, 235, 0.15);
+        transform: translateY(-2px);
+    }
+    .project-item:hover,
+    .game-item:hover {
+        background: linear-gradient(160deg, var(--item-bg-hover-1), var(--item-bg-hover-2));
+        border-color: var(--card-border-hover);
+        box-shadow: 0 18px 30px -16px var(--shadow-hover);
+        transform: translateY(-2px);
+    }
+    .project-link:hover,
+    .game-link:hover {
+        color: var(--link-hover);
+    }
+}
 @media (max-width: 900px) {
     .project-item,
     .game-item {
         width: 78%;
     }
 }
-
 @media (max-width: 700px) {
     body {
-        padding: 7rem 1rem 1.5rem 1rem;
+        padding: 7.5rem 1rem 1.5rem 1rem;
     }
     .topbar {
-        padding: 0.7rem 1rem;
+        padding: 0.75rem 1.1rem;
         gap: 0.5rem;
     }
-    .logo { font-size: 1.35rem; }
+    .logo {
+        font-size: 1.35rem;
+    }
     .nav-menu a {
         font-size: 0.85rem;
-        padding: 0.4rem 0.7rem;
+        padding: 0.45rem 0.7rem;
     }
     .theme-toggle {
-        width: 2.1rem;
-        height: 2.1rem;
-        font-size: 0.85rem;
+        width: 2.6rem;
+        height: 2.6rem;
+        font-size: 1rem;
+    }
+    .topbar-right {
+        gap: 0.7rem;
     }
     .card {
         padding: 1.6rem 1.2rem;
         border-radius: 0.6rem;
     }
-    .card-header h2 { font-size: 1.6rem; }
+    .card-header h2 {
+        font-size: 1.6rem;
+    }
     .card-header i {
         font-size: 1.3rem;
         width: 2.6rem;
         padding: 6px;
     }
-    .info-grid { flex-direction: column; }
-    .info-contacts { width: 100%; }
+    .info-grid {
+        flex-direction: column;
+    }
+    .info-contacts {
+        width: 100%;
+    }
     .project-item,
-    .game-item { width: 90%; }
+    .game-item {
+        width: 90%;
+    }
     .terminal-body {
         min-height: 200px;
         font-size: 0.85rem;
         padding: 1rem;
     }
 }
-
 @media (max-width: 480px) {
     .topbar {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
         border-radius: 0.5rem;
-        padding: 0.8rem;
-        gap: 0.6rem;
+        padding: 0.85rem 1rem;
+        gap: 0.7rem;
     }
-    .logo { font-size: 1.4rem; }
-    .topbar-right { flex-direction: column; gap: 0.5rem; }
-    .nav-menu { justify-content: center; }
-    body { padding-top: 10.5rem; }
-    .card-header h2 { font-size: 1.35rem; }
-    .project-item h3, .game-item h3 { font-size: 1.1rem; }
+    .logo {
+        font-size: 1.45rem;
+        text-align: center;
+        padding: 0;
+    }
+    .topbar-right {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.6rem;
+        width: 100%;
+    }
+    .nav-menu {
+        justify-content: flex-start;
+        flex: 1;
+        gap: 0.15rem;
+    }
+    .nav-menu a {
+        font-size: 0.78rem;
+        padding: 0.4rem 0.55rem;
+    }
+    .theme-toggle {
+        width: 2.4rem;
+        height: 2.4rem;
+        font-size: 0.95rem;
+    }
+    body {
+        padding-top: 11rem;
+    }
+    .card-header h2 {
+        font-size: 1.35rem;
+    }
+    .project-item h3, .game-item h3 {
+        font-size: 1.1rem;
+    }
     .project-item,
     .game-item {
         width: 100%;
@@ -756,6 +747,39 @@ body.loaded .topbar {
         min-height: 180px;
         font-size: 0.78rem;
         line-height: 1.8;
+        padding: 0.9rem;
     }
-    .terminal-title { display: none; }
+    .terminal-title {
+        display: none;
+    }
+}
+@media (max-width: 380px) {
+    body {
+        padding-top: 11.5rem;
+    }
+    .logo {
+        font-size: 1.3rem;
+    }
+    .nav-menu a {
+        font-size: 0.72rem;
+        padding: 0.35rem 0.45rem;
+    }
+    .theme-toggle {
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 0.85rem;
+    }
+    .card {
+        padding: 1.4rem 1rem;
+    }
+    .card-header h2 {
+        font-size: 1.2rem;
+    }
+    .info-contacts {
+        padding: 1.2rem;
+    }
+    .terminal-body {
+        font-size: 0.72rem;
+        line-height: 1.7;
+    }
 }
