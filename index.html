@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krino - резюме</title>
+    <meta property="og:title" content="krino - portfolio">
+    <meta property="og:description" content="Разработчик и геймдизайнер. Unity, C#, JavaScript.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#4f80bd">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f80bd'/%3E%3Cpath d='M20 44 V20 M20 32 L36 20 M20 32 L36 44' stroke='%23ffffff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script>
+        (function () {
+            var stored = localStorage.getItem('krino-theme');
+            var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var theme = stored || (sysDark ? 'dark' : 'light');
+            if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+            var l = localStorage.getItem('krino-lang');
+            if (!l) {
+                localStorage.setItem('krino-lang', 'en');
+                document.documentElement.setAttribute('lang', 'en');
+            } else if (l === 'en') {
+                document.documentElement.setAttribute('lang', 'en');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="terminal" id="terminal">
+            <div class="terminal-bar">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="terminal-title">krino@server: ~</span>
+            </div>
+            <div class="terminal-body" id="terminalBody"></div>
+        </div>
+    </div>
+    <canvas class="snow-canvas" id="snowCanvas"></canvas>
+    <header class="topbar">
+        <h1 class="logo">krino</h1>
+        <div class="topbar-right">
+            <nav class="nav-menu" id="navMenu"></nav>
+            <div class="topbar-actions">
+                <button class="icon-action" id="langToggle" data-tooltip="Change language" aria-label="Change language">
+                    <i class="fas fa-language"></i>
+                    <span class="lang-code" id="langCode">EN</span>
+                </button>
+                <button class="icon-action" id="snowToggle" data-tooltip="Enable snow" aria-label="Snow">
+                    <i class="fas fa-snowflake"></i>
+                </button>
+                <button class="icon-action" id="themeToggle" data-tooltip="Dark theme" aria-label="Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="resume-container" id="resumeContainer"></main>
+    <button class="to-top" id="toTop" type="button" data-tooltip="Back to top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true"></div>
+    <script src="js/data.js" defer></script>
+    <script src="js/render.js" defer></script>
+    <script src="js/app.js" defer></script>
+</body>
+</html>
