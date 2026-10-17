@@ -68,8 +68,8 @@ const SITE_DATA = {
                 icon: 'fa-cube',
                 title: 'FAMI Projects',
                 image: 'img/famiLogo.png',
-                descRu: 'Команда энтузиастов, превращающая идеи в качественные игры на Unity. Мы уделяем внимание каждой детали геймплея, создавая проекты, которые находят отклик в сердцах игроков.',
-                descEn: 'A team of enthusiasts turning ideas into quality Unity games. We care about every gameplay detail, creating projects that resonate with players.',
+                descRu: 'Организация, основанная с моим лучшим другом. Основывалась для игры Curse Of Death, на данный момент в заморозке.',
+                descEn: 'An organization founded with my best friend. It was created for the Curse Of Death game, currently on hold.',
                 tags: ['Unity', 'C#', 'Game Design'],
                 link: { href: '#', icon: 'fa-github', type: 'fab', textRu: 'Coming soon...', textEn: 'Coming soon...' }
             }
