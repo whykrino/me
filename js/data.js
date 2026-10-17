@@ -8,13 +8,13 @@ const SITE_DATA = {
     terminal: {
         user: 'krino@server',
         commands: [
-            { cmd: 'ssh krino@dev.space', delay: 400, duration: 55 },
-            { cmd: 'password: ********', delay: 550, duration: 40, muted: true },
-            { cmd: 'welcome to krino.dev - mySite', delay: 450, duration: 30, info: true },
-            { cmd: 'loading modules...', delay: 300, duration: 45 },
-            { cmd: 'mounting info - projects - games - stack', delay: 350, duration: 40 },
-            { cmd: 'starting render pipeline', delay: 350, duration: 35 },
-            { cmd: 'status: ready', delay: 400, duration: 35, success: true }
+            { cmd: 'ssh krino@dev.space', delay: 60, duration: 22 },
+            { cmd: 'password: ********', delay: 80, duration: 16, muted: true },
+            { cmd: 'welcome to krino.dev - mySite', delay: 80, duration: 12, info: true },
+            { cmd: 'loading modules...', delay: 60, duration: 16 },
+            { cmd: 'mounting info - projects - games - stack', delay: 60, duration: 16 },
+            { cmd: 'starting render pipeline', delay: 60, duration: 12 },
+            { cmd: 'status: ready', delay: 80, duration: 12, success: true }
         ]
     },
     info: {
@@ -22,14 +22,14 @@ const SITE_DATA = {
         titleRu: 'информация',
         titleEn: 'about',
         paragraphsRu: [
-            'Привет! Меня зовут <span class="highlight krino">krino</span>, и я делаю игры и небольшие проекты на <span class="highlight lang-unity">Unity</span> и <span class="highlight lang-js">JavaScript</span>. Начинал как обычный пользователь, который просто любил играть, а потом сам захотел попробовать что-то создать.',
-            'Сейчас учусь, экспериментирую и собираю небольшие проекты вместе с друзьями. Мне нравится, когда получается сделать что-то, что людям реально интересно потрогать - будь то маленькая игра или красивый интерфейс.',
-            'Если у тебя есть идея, проект или просто хочется поболтать на тему разработки - пиши, буду рад.'
+            'Привет, я <span class="highlight krino">Арсений Патрушев</span>, в узких кругах известен как <span class="highlight krino">krino</span>.',
+            'Пишу в основном на <span class="highlight lang-js">JavaScript</span> и <span class="highlight lang-ts">TypeScript</span>. Сейчас осваиваю <span class="highlight lang-csharp">C#</span> с <span class="highlight lang-unity">Unity</span>.',
+            'Если есть предложения по проектам - пишите. Готов поработать даже за идею - мне важнее опыт, чем условия на старте.'
         ],
         paragraphsEn: [
-            'Hi! My name is <span class="highlight krino">krino</span>, and I build games and small projects with <span class="highlight lang-unity">Unity</span> and <span class="highlight lang-js">JavaScript</span>. I started as a regular player who loved games, then decided to try making something myself.',
-            'Right now I am learning, experimenting and putting together small projects with friends. I love the moment when something turns out good enough that people actually want to try it - whether it is a small game or a nice interface.',
-            'If you have an idea, a project, or just want to chat about development - write to me, I will be glad.'
+            'Hi, I am <span class="highlight krino">Arseny Patrushev</span>, known as <span class="highlight krino">krino</span> in narrow circles.',
+            'I mostly write in <span class="highlight lang-js">JavaScript</span> and <span class="highlight lang-ts">TypeScript</span>. Currently learning <span class="highlight lang-csharp">C#</span> with <span class="highlight lang-unity">Unity</span>.',
+            'If you have project offers - write to me. I am ready to work even for an idea - experience matters more to me than conditions at the start.'
         ],
         contactsRu: 'контакты',
         contactsEn: 'contacts',
@@ -47,11 +47,14 @@ const SITE_DATA = {
         titleRu: 'стек',
         titleEn: 'stack',
         items: [
-            { icon: 'fa-cube', name: 'Unity', cls: 'stack-unity' },
-            { icon: 'fa-hashtag', name: 'C#', cls: 'stack-csharp' },
             { icon: 'fa-js', name: 'JavaScript', cls: 'stack-js', type: 'fab' },
+            { icon: 'fa-code', name: 'TypeScript', cls: 'stack-ts', type: 'fas' },
+            { icon: 'fa-node-js', name: 'Node.js', cls: 'stack-node', type: 'fab' },
+            { icon: 'fa-react', name: 'React', cls: 'stack-react', type: 'fab' },
             { icon: 'fa-html5', name: 'HTML5', cls: '', type: 'fab' },
             { icon: 'fa-css3-alt', name: 'CSS3', cls: '', type: 'fab' },
+            { icon: 'fa-hashtag', name: 'C#', cls: 'stack-csharp' },
+            { icon: 'fa-cube', name: 'Unity', cls: 'stack-unity' },
             { icon: 'fa-git-alt', name: 'Git', cls: '', type: 'fab' }
         ]
     },
@@ -61,22 +64,14 @@ const SITE_DATA = {
         titleEn: 'projects',
         items: [
             {
-                slug: 'fami-project',
+                slug: 'fami-projects',
                 icon: 'fa-cube',
-                title: 'FAMI Project',
+                title: 'FAMI Projects',
+                image: 'img/famiLogo.png',
                 descRu: 'Команда энтузиастов, превращающая идеи в качественные игры на Unity. Мы уделяем внимание каждой детали геймплея, создавая проекты, которые находят отклик в сердцах игроков.',
                 descEn: 'A team of enthusiasts turning ideas into quality Unity games. We care about every gameplay detail, creating projects that resonate with players.',
                 tags: ['Unity', 'C#', 'Game Design'],
                 link: { href: '#', icon: 'fa-github', type: 'fab', textRu: 'Coming soon...', textEn: 'Coming soon...' }
-            },
-            {
-                slug: 'designcord',
-                icon: 'fa-palette',
-                title: 'DESIGNCORD',
-                descRu: 'Студия дизайна, рождённая в Discord и живущая творчеством. Мы создаём рисованные работы, которые говорят за себя: стильно, атмосферно и с любовью к деталям.',
-                descEn: 'A design studio born in Discord and living through creativity. We craft illustrated works that speak for themselves: stylish, atmospheric and detail-loving.',
-                tags: ['Digital Art', 'Design', 'Branding'],
-                link: { href: '#', icon: 'fa-external-link-alt', type: 'fas', textRu: 'Coming soon...', textEn: 'Coming soon...' }
             }
         ]
     },
@@ -86,8 +81,28 @@ const SITE_DATA = {
         titleEn: 'games',
         items: [
             {
+                icon: 'fa-wind',
+                title: 'Shadow Striker',
+                image: 'img/shadowStriker.svg',
+                meta: [
+                    { icon: 'fa-tag', textRu: 'Слэшер / 2D', textEn: 'Slash / 2D' },
+                    { icon: 'fa-calendar', text: '2026' }
+                ],
+                descRu: 'Shadow Strike — атмосферный 2D-слэшер про ниндзя. Рассекай орды монстров мечом, уклоняйся рывком, качай таланты и следи за здоровьем в бою. Тёмная минималистичная графика, плавная анимация, объёмная музыка и живые звуки.',
+                descEn: 'Shadow Strike is an atmospheric 2D ninja slasher. Cut through hordes of monsters with your blade, dodge with a dash, upgrade talents and watch your health in combat. Dark minimalist graphics, smooth animation, deep music and lively sound.',
+                link: { href: 'https://whykrino.github.io/shadowStriker/', icon: 'fa-arrow-up-right-from-square', type: 'fas', textRu: 'Играть', textEn: 'Play' },
+                source: {
+                    href: 'https://github.com/whykrino/shadowStriker',
+                    icon: 'fa-github',
+                    type: 'fab',
+                    textRu: 'Исходный код',
+                    textEn: 'Source code'
+                }
+            },
+            {
                 icon: 'fa-skull',
                 title: 'Curse Of Death',
+                image: 'img/curseOfDeath.png',
                 meta: [
                     { icon: 'fa-tag', textRu: 'Хоррор / Экшен', textEn: 'Horror / Action' },
                     { icon: 'fa-calendar', text: '2023' }
@@ -95,18 +110,6 @@ const SITE_DATA = {
                 descRu: 'Мрачный хоррор, где каждое проклятие приближает тебя к неизбежному. Сражаясь в одиночку с тьмой, ты должен разорвать смертельный круг, пока он не поглотил тебя целиком.',
                 descEn: 'A dark horror where every curse brings you closer to the inevitable. Fighting the darkness alone, you must break the deadly circle before it consumes you.',
                 link: { href: '#', icon: 'fa-steam', type: 'fab', textRu: 'Coming soon...', textEn: 'Coming soon...' }
-            },
-            {
-                icon: 'fa-wind',
-                title: 'Shadow Striker',
-                image: 'img/shadow-striker.svg',
-                meta: [
-                    { icon: 'fa-tag', textRu: 'Слэшер / 2D', textEn: 'Slash / 2D' },
-                    { icon: 'fa-calendar', text: '2026' }
-                ],
-                descRu: 'Shadow Strike — атмосферный 2D-слэшер про ниндзя. Рассекай орды монстров мечом, уклоняйся рывком, качай таланты и следи за здоровьем в бою. Тёмная минималистичная графика, плавная анимация, объёмная музыка и живые звуки.',
-                descEn: 'Shadow Strike is an atmospheric 2D ninja slasher. Cut through hordes of monsters with your blade, dodge with a dash, upgrade talents and watch your health in combat. Dark minimalist graphics, smooth animation, deep music and lively sound.',
-                link: { href: 'https://whykrino.github.io/shadowStriker/', icon: 'fa-arrow-up-right-from-square', type: 'fas', textRu: 'Играть', textEn: 'Play' }
             }
         ]
     },
@@ -157,7 +160,6 @@ const SITE_DATA = {
             topicPlaceholder: 'Выберите тему',
             topicProject: 'Новый проект',
             topicCollab: 'Сотрудничество',
-            topicBug: 'Нашёл ошибку',
             topicFeedback: 'Отзыв или идея',
             topicOther: 'Другое',
             fileDropText: 'Перетащите файлы или нажмите, чтобы выбрать',
@@ -182,7 +184,6 @@ const SITE_DATA = {
             topicPlaceholder: 'Choose a topic',
             topicProject: 'New project',
             topicCollab: 'Collaboration',
-            topicBug: 'Found a bug',
             topicFeedback: 'Feedback or idea',
             topicOther: 'Other',
             fileDropText: 'Drag files here or click to choose',

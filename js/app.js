@@ -356,7 +356,7 @@
         const preloader = $('#preloader');
         const body = $('#terminalBody');
         const term = SITE_DATA.terminal;
-        const speedFactor = reducedMotion ? 0.05 : 0.6;
+        const speedFactor = reducedMotion ? 0.05 : 0.45;
         const runSequence = async () => {
             for (const c of term.commands) {
                 const line = document.createElement('div');
@@ -373,16 +373,16 @@
                 line.appendChild(cmd);
                 body.appendChild(line);
                 await typeCommand(cmd, c.cmd, c.duration * speedFactor);
-                await new Promise(r => setTimeout(r, c.delay * 0.9));
+                await new Promise(r => setTimeout(r, c.delay * 0.6));
             }
             const cursor = document.createElement('div');
             cursor.className = 'terminal-line';
             cursor.innerHTML = `<span class="terminal-prompt">${term.user}:~$</span><span class="terminal-cursor"></span>`;
             body.appendChild(cursor);
-            await new Promise(r => setTimeout(r, 600));
+            await new Promise(r => setTimeout(r, 250));
             preloader.classList.add('hidden');
             document.body.classList.add('loaded');
-            setTimeout(() => preloader.remove(), 900);
+            setTimeout(() => preloader.remove(), 500);
         };
         runSequence();
     }
@@ -781,17 +781,25 @@
                 a.classList.toggle('active', a.getAttribute('href') === '#' + id);
             });
         };
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setActive(entry.target.id);
+        let ticking = false;
+        function updateActiveSection() {
+            const scrollPos = window.scrollY + window.innerHeight * 0.35;
+            let currentId = sections[0].id;
+            for (const section of sections) {
+                if (section.offsetTop <= scrollPos) {
+                    currentId = section.id;
                 }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '-30% 0px -55% 0px'
-        });
-        sections.forEach(s => io.observe(s));
+            }
+            setActive(currentId);
+            ticking = false;
+        }
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateActiveSection);
+                ticking = true;
+            }
+        }, { passive: true });
+        updateActiveSection();
     }
 
     function initToTop() {

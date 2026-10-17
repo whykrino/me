@@ -76,18 +76,26 @@ const Render = (function () {
     }
 
     function buildProjects(data) {
-        const items = data.items.map(p => `
-            <div class="project-item reveal-child" data-slug="${p.slug || ''}" data-title="${p.title}" tabindex="0" role="button" aria-label="Copy link to ${p.title}">
-                <h3>${icon('fas', p.icon)} ${p.title}</h3>
-                <div class="project-desc">${currentLang === 'en' ? p.descEn : p.descRu}</div>
-                <div class="tech-tags">
-                    ${p.tags.map(t => `<span>${t}</span>`).join('')}
+        const items = data.items.map(p => {
+            const img = p.image
+                ? `<img class="project-icon-img" src="${p.image}" alt="${p.title}" loading="lazy" decoding="async">`
+                : icon('fas', p.icon);
+            return `
+                <div class="project-item reveal-child" data-slug="${p.slug || ''}" data-title="${p.title}" tabindex="0" role="button" aria-label="Copy link to ${p.title}">
+                    <h3>
+                        <span class="item-icon-wrap">${img}</span>
+                        <span class="item-title">${p.title}</span>
+                    </h3>
+                    <div class="project-desc">${currentLang === 'en' ? p.descEn : p.descRu}</div>
+                    <div class="tech-tags">
+                        ${p.tags.map(t => `<span>${t}</span>`).join('')}
+                    </div>
+                    <a href="${p.link.href}" class="project-link">
+                        ${icon(p.link.type, p.link.icon)} <span class="link-text">${currentLang === 'en' ? p.link.textEn : p.link.textRu}</span> →
+                    </a>
                 </div>
-                <a href="${p.link.href}" class="project-link">
-                    ${icon(p.link.type, p.link.icon)} <span class="link-text">${currentLang === 'en' ? p.link.textEn : p.link.textRu}</span> →
-                </a>
-            </div>
-        `).join('');
+            `;
+        }).join('');
         return `
             <section class="card reveal" id="projects">
                 <div class="card-header reveal-child">
@@ -110,15 +118,23 @@ const Render = (function () {
             const img = g.image
                 ? `<div class="game-image"><img src="${g.image}" alt="${g.title}" loading="lazy" decoding="async"></div>`
                 : '';
+            const source = g.source ? `
+                <a href="${g.source.href}" class="game-link source-link" target="_blank" rel="noopener noreferrer">
+                    ${icon(g.source.type, g.source.icon)} <span class="source-text">${currentLang === 'en' ? g.source.textEn : g.source.textRu}</span> →
+                </a>
+            ` : '';
             return `
                 <div class="game-item reveal-child">
                     ${img}
                     <h3>${icon('fas', g.icon)} ${g.title}</h3>
                     <div class="game-meta">${meta}</div>
                     <div class="game-desc">${currentLang === 'en' ? g.descEn : g.descRu}</div>
-                    <a href="${g.link.href}" class="game-link"${extAttrs}>
-                        ${icon(g.link.type, g.link.icon)} <span class="link-text">${currentLang === 'en' ? g.link.textEn : g.link.textRu}</span> →
-                    </a>
+                    <div class="game-links">
+                        <a href="${g.link.href}" class="game-link"${extAttrs}>
+                            ${icon(g.link.type, g.link.icon)} <span class="link-text">${currentLang === 'en' ? g.link.textEn : g.link.textRu}</span> →
+                        </a>
+                        ${source}
+                    </div>
                 </div>
             `;
         }).join('');
@@ -192,10 +208,6 @@ const Render = (function () {
                                 <li class="topic-option" role="option" tabindex="-1" data-value="collab" data-i18n="topicCollab">
                                     <i class="fas fa-handshake"></i>
                                     <span>${m.topicCollab}</span>
-                                </li>
-                                <li class="topic-option" role="option" tabindex="-1" data-value="bug" data-i18n="topicBug">
-                                    <i class="fas fa-bug"></i>
-                                    <span>${m.topicBug}</span>
                                 </li>
                                 <li class="topic-option" role="option" tabindex="-1" data-value="feedback" data-i18n="topicFeedback">
                                     <i class="fas fa-lightbulb"></i>
@@ -475,6 +487,11 @@ const Render = (function () {
                 if (linkSpan) {
                     const text = lang === 'en' ? g.link.textEn : g.link.textRu;
                     promises.push(processTextElement(linkSpan, text, reverse, dur * 0.5));
+                }
+                const sourceSpan = el.querySelector('.source-text');
+                if (sourceSpan && g.source) {
+                    const text = lang === 'en' ? g.source.textEn : g.source.textRu;
+                    promises.push(processTextElement(sourceSpan, text, reverse, dur * 0.5));
                 }
             });
         }
