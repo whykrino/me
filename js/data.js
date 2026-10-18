@@ -71,7 +71,7 @@ const SITE_DATA = {
                 descRu: 'Организация, основанная с моим лучшим другом. Основывалась для игры Curse Of Death, на данный момент в заморозке.',
                 descEn: 'An organization founded with my best friend. It was created for the Curse Of Death game, currently on hold.',
                 tags: ['Unity', 'C#', 'Game Design'],
-                link: { href: '#', icon: 'fa-github', type: 'fab', textRu: 'Coming soon...', textEn: 'Coming soon...' }
+                link: { href: 'https://whykrino.github.io/famiProjects/', icon: 'fa-arrow-up-right-from-square', type: 'fas', textRu: 'Посетить сайт', textEn: 'Visit site' }
             }
         ]
     },
@@ -88,7 +88,7 @@ const SITE_DATA = {
                     { icon: 'fa-tag', textRu: 'Слэшер / 2D', textEn: 'Slash / 2D' },
                     { icon: 'fa-calendar', text: '2026' }
                 ],
-                descRu: 'Shadow Strike — атмосферный 2D-слэшер про ниндзя. Рассекай орды монстров мечом, уклоняйся рывком, качай таланты и следи за здоровьем в бою. Тёмная минималистичная графика, плавная анимация, объёмная музыка и живые звуки.',
+                descRu: 'Shadow Strike - атмосферный 2D-слэшер про ниндзя. Рассекай орды монстров мечом, уклоняйся рывком, качай таланты и следи за здоровьем в бою. Тёмная минималистичная графика, плавная анимация, объёмная музыка и живые звуки.',
                 descEn: 'Shadow Strike is an atmospheric 2D ninja slasher. Cut through hordes of monsters with your blade, dodge with a dash, upgrade talents and watch your health in combat. Dark minimalist graphics, smooth animation, deep music and lively sound.',
                 link: { href: 'https://whykrino.github.io/shadowStriker/', icon: 'fa-arrow-up-right-from-square', type: 'fas', textRu: 'Играть', textEn: 'Play' },
                 source: {

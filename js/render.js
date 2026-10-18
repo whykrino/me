@@ -80,6 +80,8 @@ const Render = (function () {
             const img = p.image
                 ? `<img class="project-icon-img" src="${p.image}" alt="${p.title}" loading="lazy" decoding="async">`
                 : icon('fas', p.icon);
+            const external = p.link.href && p.link.href.startsWith('http');
+            const extAttrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
             return `
                 <div class="project-item reveal-child" data-slug="${p.slug || ''}" data-title="${p.title}" tabindex="0" role="button" aria-label="Copy link to ${p.title}">
                     <h3>
@@ -90,7 +92,7 @@ const Render = (function () {
                     <div class="tech-tags">
                         ${p.tags.map(t => `<span>${t}</span>`).join('')}
                     </div>
-                    <a href="${p.link.href}" class="project-link">
+                    <a href="${p.link.href}" class="project-link"${extAttrs}>
                         ${icon(p.link.type, p.link.icon)} <span class="link-text">${currentLang === 'en' ? p.link.textEn : p.link.textRu}</span> →
                     </a>
                 </div>
